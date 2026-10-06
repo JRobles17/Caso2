@@ -37,4 +37,25 @@ class CalculadoraEdadTest {
                 () -> CalculadoraEdad.calcularEdad(nacimiento, hoy));
         assertEquals("La fecha de nacimiento no puede ser posterior a la fecha actual", ex.getMessage());
     }
+
+        @Test
+    void bisiestoUnDiaAntesDelCumpleanios() {
+        LocalDate nacimiento = LocalDate.of(2004, 2, 29);
+        LocalDate hoy = LocalDate.of(2025, 2, 28);
+        assertEquals(20, CalculadoraEdad.calcularEdad(nacimiento, hoy));
+    }
+
+    @Test
+    void bisiestoCumpleEl1DeMarzo() {
+        LocalDate nacimiento = LocalDate.of(2004, 2, 29);
+        LocalDate hoy = LocalDate.of(2025, 3, 1);
+        assertEquals(21, CalculadoraEdad.calcularEdad(nacimiento, hoy));
+    }
+
+    @Test
+    void bisiestoEnAnioBisiesto() {
+        LocalDate nacimiento = LocalDate.of(2004, 2, 29);
+        LocalDate hoy = LocalDate.of(2028, 2, 29);
+        assertEquals(24, CalculadoraEdad.calcularEdad(nacimiento, hoy));
+    }
 }
